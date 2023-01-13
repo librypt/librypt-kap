@@ -1,5 +1,3 @@
-use librypt_entropy::EntropySource;
-
 /// A Key Agreement Protocol (KAP).
 pub trait KeyAgreementProtocol {
     /// Custom type for shared data to facilitate the key exchange.
@@ -9,9 +7,6 @@ pub trait KeyAgreementProtocol {
     ///
     /// WARNING: The computed secret should **not** be used directly as key material, but rather fed through a Key Derivation Function (KDF).
     type SharedSecret: AsRef<[u8]>;
-
-    /// Randomly generate a ephemeral key for the key exchange.
-    fn new(es: &impl EntropySource) -> Self;
 
     /// Compute the public/shared parts of the ephemeral key.
     fn shared_key(&self) -> Self::SharedKey;
